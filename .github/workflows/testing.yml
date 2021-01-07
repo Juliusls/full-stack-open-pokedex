@@ -23,8 +23,9 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: it contains pull request and skip
-        if: contains(join(github.event.commits.*.message, ', '), 'pull request')
-        if: contains(join(github.event.commits.*.message, ', '), '#skip')
+        if: |
+          contains(join(github.event.commits.*.message, ', '), 'pull request') ||
+          contains(join(github.event.commits.*.message, ', '), '#skip')
         run: echo "Yes"
       - name: it shows combined messages
         env:
