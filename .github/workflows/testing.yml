@@ -22,7 +22,19 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
-      - name: true or false
+      - name: joined messages
         env:
-          TEST_MESSAGES: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
-        run: echo "$TEST_MESSAGES"
+          JOINED_MESSAGES: ${{ join(github.event.commits.*.message, ', ') }}
+        run: echo "$JOINED_MESSAGES"
+      - name: contains skip with hashtag
+        env:
+          CONTAINS_SKIP_HASHTAG: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
+        run: echo "$CONTAINS_SKIP_HASHTAG"
+      - name: contains skip
+        env:
+          CONTAINS_SKIP: ${{ contains(join(github.event.commits.*.message, ', '), 'skip') }}
+        run: echo "$CONTAINS_SKIP"
+      - name: contains random
+        env:
+          CONTAINS_RANDOM: ${{ contains(join(github.event.commits.*.message, ', '), 'random') }}
+        run: echo "$CONTAINS_RANDOM"
