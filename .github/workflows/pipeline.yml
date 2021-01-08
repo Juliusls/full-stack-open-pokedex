@@ -47,8 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-      - name: slack success notification
-        uses: 8398a7/action-slack@v3
+      - uses: 8398a7/action-slack@v3
         with:
           status: custom
           fields: commit,author,took
@@ -63,8 +62,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') && success() }}
-      - name: slack failure notification
-        uses: 8398a7/action-slack@v3
+      - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: all
