@@ -50,15 +50,15 @@ jobs:
       - name: slack success notification
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
+          status: custom
           fields: commit,author,took
           custom_payload: |
             {
               username: 'action-slack',
               icon_emoji: ':octocat:',
               attachments: [{
-                color: 'good'
-                text: `A new version deployed to https://pokedexbyjulius.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} build took ${process.env.AS_TOOK}`,
+              color: 'good',
+                text: `A new version deployed to https://pokedexbyjulius.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} build in ${process.env.AS_TOOK}`,
               }]
             }
         env:
