@@ -11,7 +11,11 @@ app.get('/health', (req, res) => {
 })
 
 app.get('/version', (req, res) => {
-  res.send('33')
+  res.send('34')
+})
+
+app.get('/ping', (req, res) => {
+  res.send('pong')
 })
 
 app.listen(PORT, () => {
