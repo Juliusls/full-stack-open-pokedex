@@ -11,8 +11,12 @@ app.get('/health', (req, res) => {
 })
 
 app.get('/version', (req, res) => {
-  res.send('34')
+  res.send('35')
 })
+
+// app.get('/ping', (req, res) => {
+//   res.send('pong')
+// })
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
